@@ -1,0 +1,16 @@
+FROM node:12.15.0-alpine
+
+WORKDIR /var/maxwin/ibus-strapi-ty
+
+COPY . .
+
+RUN yarn install --prod \
+  && yarn cache clean
+
+EXPOSE 1337
+
+ENV NODE_ENV production
+
+ENTRYPOINT ["sh","./docker-entrypoint.sh"]
+
+CMD ["yarn", "start"]
